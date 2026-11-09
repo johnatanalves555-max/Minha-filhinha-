@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Filhinha</title>
+<style>
+  body{font-family:sans-serif;background:#fff6ec;text-align:center;padding:20px}
+  .card{background:#fff;border-radius:20px;padding:15px;box-shadow:0 4px 10px #0001}
+  #gata{font-size:90px;transition:transform .3s}
+  button{border:none;border-radius:20px;padding:14px 10px;font-size:16px;width:45%;margin:5px;cursor:pointer}
+  .comer{background:#ffd9a8}.brincar{background:#d8c8ff}.carinho{background:#ffb6d1}.dormir{background:#b6c8ff}
+  .barra{height:12px;background:#eee;border-radius:10px;overflow:hidden;margin:5px 0}
+  .fill{height:100%;background:#ff9ecb}
+</style>
+</head>
+<body>
+<h1>Minha Filhinha 💜</h1>
+<div class="card">
+  <div id="gata">🐱</div>
+  <p id="fala">Oi papai! Eu tô feliz que você veio me ver!</p>
+  <p>❤️ Saúde <span id="saudeTxt">100</span></p><div class="barra"><div id="saude" class="fill" style="width:100%"></div></div>
+  <p>🍲 Fome <span id="fomeTxt">70</span></p><div class="barra"><div id="fome" class="fill" style="width:70%;background:#ffab6e"></div></div>
+  <p>⭐ Felicidade <span id="felizTxt">85</span></p><div class="barra"><div id="feliz" class="fill" style="width:85%;background:#b39dff"></div></div>
+</div>
+<br>
+<button class="comer" onclick="acao('comer')">🍲 Alimentar</button>
+<button class="brincar" onclick="acao('brincar')">🧶 Brincar</button>
+<button class="carinho" onclick="acao('carinho')">💖 Carinho</button>
+<button class="dormir" onclick="acao('dormir')">🌙 Dormir</button>
+<p style="font-size:13px;color:#888">Com amor, da sua filhinha cinza, da Margarida e do Polaquinho</p>
+<script>
+let saude=100,fome=70,feliz=85;
+function atualiza(){
+  document.getElementById('saude').style.width=saude+'%';
+  document.getElementById('fome').style.width=fome+'%';
+  document.getElementById('feliz').style.width=feliz+'%';
+  document.getElementById('saudeTxt').innerText=saude;
+  document.getElementById('fomeTxt').innerText=fome;
+  document.getElementById('felizTxt').innerText=feliz;
+}
+function acao(tipo){
+  let gata=document.getElementById('gata');
+  let fala=document.getElementById('fala');
+  gata.style.transform='scale(1.2)';
+  setTimeout(()=>gata.style.transform='scale(1)',300);
+  if(tipo=='comer'){fome=Math.min(100,fome+20);saude=Math.min(100,saude+5);fala.innerText='Hummm, papai! Que comidinha gostosa! Obrigada!';gata.innerText='😋';}
+  if(tipo=='brincar'){feliz=Math.min(100,feliz+20);fome=Math.max(0,fome-5);fala.innerText='Pega, pega, papai! Eu amei brincar com você!';gata.innerText='😸';}
+  if(tipo=='carinho'){feliz=Math.min(100,feliz+15);saude=Math.min(100,saude+5);fala.innerText='Rrrrron ron ron... eu amo seu carinho, papai...';gata.innerText='🥰';}
+  if(tipo=='dormir'){saude=Math.min(100,saude+15);fala.innerText='Boa noite, papai... me cobre com o cobertorzinho...';gata.innerText='😴';}
+  atualiza();
+}
+setInterval(()=>{fome=Math.max(0,fome-1);feliz=Math.max(0,feliz-1);atualiza()},5000);
+</script>
+</body>
+</html>
